@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.3'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'app.besoft'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+
+dependencies {
+    implementation ('org.springframework.boot:spring-boot-starter') {
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+    }
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation ('com.arcadedb:arcadedb-engine:24.1.1'){
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+    }
+    // https://mvnrepository.com/artifact/com.arcadedb/arcadedb-studio
+    implementation ('com.arcadedb:arcadedb-studio:24.1.1'){
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+    }
+    // https://mvnrepository.com/artifact/com.arcadedb/arcadedb-server
+    implementation ('com.arcadedb:arcadedb-server:24.1.1') {
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+    }
+
+
+
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
